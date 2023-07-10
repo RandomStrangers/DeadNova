@@ -80,7 +80,11 @@ namespace DeadNova {
             try {
                 try {
                     DeleteFiles("Changelog.txt", "DeadNova_.update", "DeadNova.update", "DeadNovaCLI.update",
+#if DEV_BUILD_NOVA
+                                "prev_DeadNova_Core.dll", "prev_DeadNova_CoreGUI.exe", "prev_DeadNovaCLI_Core.exe");
+#else
                                 "prev_DeadNova_.dll", "prev_DeadNova.exe", "prev_DeadNovaCLI.exe");
+#endif
                 } catch {
                 }
                 
