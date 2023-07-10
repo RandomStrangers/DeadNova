@@ -23,7 +23,7 @@ namespace DeadNova.Modules.Moderation.Notes
     public sealed class NotesPlugin : Plugin 
     {
         public override string creator { get { return Server.SoftwareName + " team"; } }
-        public override string SuperNova_Version { get { return Server.Version; } }
+        public override string DeadNova_Version { get { return Server.Version; } }
         public override string name { get { return "Core_NotesPlugin"; } }
 
         public override void Load(bool startup) {

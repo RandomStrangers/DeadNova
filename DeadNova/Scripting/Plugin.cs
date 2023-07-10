@@ -50,7 +50,7 @@ namespace DeadNova
         /// <summary> Name of the plugin. </summary>
         public abstract string name { get; }
         /// <summary> Oldest version of DeadNova this plugin is compatible with. </summary>
-        public abstract string SuperNova_Version { get; }
+        public abstract string DeadNova_Version { get; }
         /// <summary> Version of this plugin. </summary>
         public virtual int build { get { return 0; } }
         /// <summary> Message to display once this plugin is loaded. </summary>
@@ -66,7 +66,7 @@ namespace DeadNova
         
         public static bool Load(Plugin p, bool auto) {
             try {
-                string ver = p.SuperNova_Version;
+                string ver = p.DeadNova_Version;
                 if (!String.IsNullOrEmpty(ver) && new Version(ver) > new Version(Server.Version)) {
                     Logger.Log(LogType.Warning, "Plugin ({0}) requires a more recent version of {1}!", p.name, Server.SoftwareName);
                     return false;

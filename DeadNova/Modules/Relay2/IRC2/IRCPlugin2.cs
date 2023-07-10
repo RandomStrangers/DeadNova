@@ -24,7 +24,7 @@ namespace DeadNova.Modules.Relay2.IRC2
     public sealed class IRCPlugin2 : Plugin 
     {
         public override string creator { get { return Server.SoftwareName + " team"; } }
-        public override string SuperNova_Version { get { return Server.Version; } }
+        public override string DeadNova_Version { get { return Server.Version; } }
         public override string name { get { return "IRCRelay2"; } }
 
         public static IRCBot2 Bot = new IRCBot2();

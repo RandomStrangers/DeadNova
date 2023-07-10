@@ -87,7 +87,7 @@ namespace DeadNova.Modules.Relay1.Discord1
     public sealed class DiscordPlugin1 : Plugin 
     {
         public override string creator { get { return Server.SoftwareName + " team"; } }
-        public override string SuperNova_Version { get { return Server.Version; } }
+        public override string DeadNova_Version { get { return Server.Version; } }
         public override string name { get { return "DiscordRelay1"; } }
         
         public static Discord1Config Config = new Discord1Config();
