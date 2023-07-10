@@ -341,7 +341,7 @@ namespace DeadNova
         
         public bool HandleDeath(BlockID block, string customMsg = "", bool explode = false, bool immediate = false) {
             if (!immediate && lastDeath.AddSeconds(2) > DateTime.UtcNow) return false;
-            if (invulnerable) return false;
+            if (invincible) return false;
             
             cancelDeath = false;
             OnPlayerDeathEvent.Call(this, block);

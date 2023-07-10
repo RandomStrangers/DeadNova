@@ -356,8 +356,8 @@ namespace DeadNova {
         
         [ConfigBool("cheapmessage", "Other", true)]
         public bool ShowInvulnerableMessage = true;        
-        [ConfigString("cheap-message-given", "Messages", " is now invulnerable")]
-        public string InvulnerableMessage = " is now invulnerable";
+        [ConfigString("cheap-message-given", "Messages", " is now invincible")]
+        public string InvulnerableMessage = " is now invincible";
         [ConfigString("custom-ban-message", "Messages", "You're banned!")]
         public string DefaultBanMessage = "You're banned!";
         [ConfigString("custom-shutdown-message", "Messages", "Server shutdown. Rejoin in 10 seconds.")]

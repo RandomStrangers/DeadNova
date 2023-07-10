@@ -36,15 +36,15 @@ namespace DeadNova.Commands.Misc {
             if (p != who && !CheckExtraPerm(p, data, 1)) return;
             if (!CheckRank(p, data, who, "toggle invulnerability", true)) return;
             
-            who.invulnerable = !who.invulnerable;
+            who.invincible = !who.invincible;
             ShowPlayerMessage(p, who);
         }
         
         static void ShowPlayerMessage(Player p, Player target) {
-            string msg = target.invulnerable ? "now invulnerable" : "no longer invulnerable";
+            string msg = target.invincible ? "now invincible" : "no longer invincible";
             if (p == target) p.Message("You are {0}", msg);
 
-            string globalMsg = target.invulnerable ? Server.Config.InvulnerableMessage : "has stopped being invulnerable";
+            string globalMsg = target.invincible ? Server.Config.InvulnerableMessage : "has stopped being invincible";
             if (Server.Config.ShowInvulnerableMessage && !target.hidden) {
                 Chat.MessageFrom(target, "λNICK &S" + globalMsg);
             } else if (p != target) {
@@ -54,7 +54,7 @@ namespace DeadNova.Commands.Misc {
         
         public override void Help(Player p) {
             p.Message("&T/Invulnerable <name>");
-            p.Message("&HTurns invulnerable mode on/off.");
+            p.Message("&HTurns invincible mode on/off.");
             p.Message("&HIf <name> is given, that player's invulnerability is toggled");
         }
     }

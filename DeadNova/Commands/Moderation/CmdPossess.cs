@@ -45,7 +45,7 @@ namespace DeadNova.Commands.Moderation {
                 if (target == null) { p.Message("Possession disabled."); return;  }
                 
                 Unpossess(target);
-                p.invulnerable = false;
+                p.invincible = false;
                 Command.Find("Hide").Use(p, "", data);
                 p.Message("Stopped possessing {0}&S.", p.FormatNick(target));
             } else {
@@ -69,7 +69,7 @@ namespace DeadNova.Commands.Moderation {
                 if (!p.hidden) Command.Find("Hide").Use(p, "", data);
                 p.possess = target.name;
                 target.following = p.name;
-                if (!p.invulnerable) p.invulnerable = true;
+                if (!p.invincible) p.invincible = true;
                 
                 bool result = (skin == "#") ? target.MarkPossessed() : target.MarkPossessed(p.name);
                 if (!result) return;

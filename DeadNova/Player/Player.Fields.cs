@@ -77,7 +77,7 @@ namespace DeadNova {
         public bool muted;
         public bool jailed;
         public bool agreed = true;
-        public bool invulnerable;
+        public bool invincible;
         public string prefix = "";
         public string title = "";
         public string titlecolor = "";

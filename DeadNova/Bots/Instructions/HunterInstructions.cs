@@ -42,7 +42,7 @@ namespace DeadNova.Bots {
             Player closest = null;
             
             foreach (Player p in players) {
-                if (p.level != bot.level || p.invulnerable || p.hidden) continue;
+                if (p.level != bot.level || p.invincible || p.hidden) continue;
                 
                 int dx = p.Pos.X - bot.Pos.X, dy = p.Pos.Y - bot.Pos.Y, dz = p.Pos.Z - bot.Pos.Z;
                 int playerDist = Math.Abs(dx) + Math.Abs(dy) + Math.Abs(dz);
@@ -106,7 +106,7 @@ namespace DeadNova.Bots {
         public override bool Execute(PlayerBot bot, InstructionData data) {
             Player[] players = PlayerInfo.Online.Items;
             foreach (Player p in players) {
-                if (p.level != bot.level || p.invulnerable) continue;
+                if (p.level != bot.level || p.invincible) continue;
                 
                 int dx = Math.Abs(bot.Pos.X - p.Pos.X);
                 int dy = Math.Abs(bot.Pos.Y - p.Pos.Y);
