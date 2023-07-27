@@ -78,6 +78,10 @@ namespace DeadNova {
         public int PositionUpdateInterval = 100;
         [ConfigBool("classicube-account-plus", "Server", false)]
         public bool ClassicubeAccountPlus = false;
+        [ConfigStringList("disabled-commands", "Other")]
+        public List<string> DisabledCommands = new List<string>();
+        [ConfigStringList("disabled-modules", "Other")]
+        public List<string> DisabledModules = new List<string>();
         [ConfigBool("agree-to-rules-on-entry", "Other", false)]
         public bool AgreeToRulesOnEntry = false;
         [ConfigBool("admins-join-silent", "Other", false)]
@@ -145,13 +149,9 @@ namespace DeadNova {
         public float DrawReloadThreshold = 0.001f;
         [ConfigBool("allow-tp-to-higher-ranks", "Other", true)]
         public bool HigherRankTP = true;
-#if DEV_BUILD_NOVA
-        [ConfigPerm("os-perbuild-default", "Other", LevelPermission.Nova)]
-        public LevelPermission OSPerbuildDefault = LevelPermission.Nova;
-#else
-        [ConfigPerm("os-perbuild-default", "Other", LevelPermission.Console)]
-        public LevelPermission OSPerbuildDefault = LevelPermission.Console;  
-#endif
+
+        [ConfigPerm("os-perbuild-default", "Other", LevelPermission.Nobody)]
+        public LevelPermission OSPerbuildDefault = LevelPermission.Nobody;  
 
         [ConfigBool("global-irc", "GlobalIRC", false)]
         public bool UseGlobalIRC = false;

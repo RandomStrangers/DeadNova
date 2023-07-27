@@ -25,6 +25,8 @@ using DeadNova.Modules.Relay1.Discord1;
 using DeadNova.Modules.Relay1.IRC1;
 using DeadNova.Modules.Relay2.Discord2;
 using DeadNova.Modules.Relay2.IRC2;
+using DeadNova.Modules.GlobalRelay.GlobalDiscord;
+using DeadNova.Modules.GlobalRelay.GlobalIRC;
 using DeadNova.Modules.Security;
 using DeadNova.Scripting;
 
@@ -118,6 +120,8 @@ namespace DeadNova
             LoadCorePlugin(new IRCPlugin1());
             LoadCorePlugin(new DiscordPlugin2());
             LoadCorePlugin(new IRCPlugin2());
+            LoadCorePlugin(new GlobalDiscordPlugin());
+            LoadCorePlugin(new GlobalIRCPlugin());
             LoadCorePlugin(new IPThrottler());
             IScripting.AutoloadPlugins();
         }

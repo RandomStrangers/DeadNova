@@ -52,25 +52,43 @@ namespace DeadNova
         public static List<Command> coreCmds = new List<Command>();
         public static bool IsCore(Command cmd) { return coreCmds.Contains(cmd); }
         public static List<Command> CopyAll() { return new List<Command>(allCmds); }
-        
-        public static void InitAll() {
-            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+        public static void InitAll()
+        {
             allCmds.Clear();
-            coreCmds.Clear();      
-            foreach (Group grp in Group.GroupList) { grp.Commands.Clear(); }
-            
-            for (int i = 0; i < types.Length; i++) {
+            Alias.coreAliases.Clear();
+
+            Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+            for (int i = 0; i < types.Length; i++)
+            {
                 Type type = types[i];
-                if (!type.IsSubclassOf(typeof(Command)) || type.IsAbstract) continue;
-                
+                if (!type.IsSubclassOf(typeof(Command)) || type.IsAbstract || !type.IsPublic) continue;
+
                 Command cmd = (Command)Activator.CreateInstance(type);
+                if (Server.Config.DisabledCommands.CaselessContains(cmd.name)) continue;
                 Register(cmd);
             }
-            
-            coreCmds = new List<Command>(allCmds);
+
             IScripting.AutoloadCommands();
         }
-        
+        //old 1.9.3.9 code
+        /* public static void InitAll() {
+             Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+             allCmds.Clear();
+             coreCmds.Clear();      
+             foreach (Group grp in Group.GroupList) { grp.Commands.Clear(); }
+
+             for (int i = 0; i < types.Length; i++) {
+                 Type type = types[i];
+                 if (!type.IsSubclassOf(typeof(Command)) || type.IsAbstract) continue;
+
+                 Command cmd = (Command)Activator.CreateInstance(type);
+                 Register(cmd);
+             }
+
+             coreCmds = new List<Command>(allCmds);
+             IScripting.AutoloadCommands();
+         }
+         */
         public static void Register(Command cmd) {
             allCmds.Add(cmd);
             

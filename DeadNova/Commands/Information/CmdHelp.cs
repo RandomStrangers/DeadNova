@@ -58,11 +58,15 @@ namespace DeadNova.Commands.Info {
             p.Message("&HTo send private messages, type &T@PlayerName Message");
         }
 
-        static void PrintRanks(Player p) {
-
-            p.Message("/help ranks is deprecated, please use /viewranks instead");
+        static void PrintRanks(Player p)
+        {
+            foreach (Group grp in Group.GroupList)
+            {
+                p.Message("{0} &S- Draw: {1}, Perm: {2}, max realms: {3}",
+                          grp.ColoredName, grp.DrawLimit, (int)grp.Permission, grp.OverseerMaps);
+            }
         }
-    
+
         static void PrintColors(Player p) {
             p.Message("&fTo use a color, put a '%' and then put the color code.");
             p.Message("Colors Available:");

@@ -176,7 +176,7 @@ namespace DeadNova {
             EnsureDirectoryExists("text/discord"); // TODO move to discord plugin
             EnsureDirectoryExists("text/discord1"); // TODO move to discord plugin1
             EnsureDirectoryExists("text/discord2"); // TODO move to discord plugin2
-            EnsureDirectoryExists("globalchat/"); // TODO move to globalchat plugins
+            EnsureDirectoryExists("globalchat"); // TODO move to globalchat plugins
         }
 
         static void EnsureDirectoryExists(string dir) {
@@ -238,13 +238,6 @@ namespace DeadNova {
         static readonly object stopLock = new object();
         static volatile Thread stopThread;
         public static Thread Stop(bool restart, string msg) {
-#if DEV_BUILD_NOVA
-            Command.Find("say").Use(Player.Nova, "Goodbye Cruel World!");
-            Logger.Log(LogType.Warning, "&fGoodbye Cruel World!");
-#else
-Command.Find("say").Use(Player.Console, "Goodbye Cruel World!");
-            Logger.Log(LogType.Warning, "&fGoodbye Cruel World!");
-#endif
             Server.shuttingDown = true;
             lock (stopLock) {
                 if (stopThread != null) return stopThread;
@@ -362,7 +355,13 @@ Command.Find("say").Use(Player.Console, "Goodbye Cruel World!");
                 INetSocket[] pending = INetSocket.pending.Items;
                 foreach (INetSocket p in pending) { p.Send(kick, SendFlags.None); }
             } catch (Exception ex) { Logger.LogError(ex); }
-
+#if DEV_BUILD_NOVA
+            Command.Find("say").Use(Player.Nova, "Goodbye Cruel World!");
+            Logger.Log(LogType.SystemActivity, "&fGoodbye Cruel World!");
+#else
+            Command.Find("say").Use(Player.Console, "Goodbye Cruel World!");
+            Logger.Log(LogType.SystemActivity, "&fGoodbye Cruel World!");
+#endif
             OnShuttingDownEvent.Call(restarting, msg);
             Plugin.UnloadAll();
 

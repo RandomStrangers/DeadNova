@@ -635,17 +635,6 @@
     <Compile Include="Modules\Awards\AwardsList.cs" />
     <Compile Include="Modules\Moderation\Notes\CmdNotes.cs" />
     <Compile Include="Modules\Moderation\Notes\NotesPlugin.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalBotControllersCmd.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordApiClient.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordBot.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordPlugin.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordWebsocket.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCBot.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCNickList.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCPlugin.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalRelayBot.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalRelayBotCmd.cs" />
-    <Compile Include="Modules\GlobalRelay\GlobalRelayBotSender.cs" />
     <Compile Include="Modules\Relay2\BotControllersCmd2.cs" />
     <Compile Include="Modules\Relay2\Discord2\DiscordApiClient2.cs" />
     <Compile Include="Modules\Relay2\Discord2\DiscordBot2.cs" />
@@ -772,6 +761,17 @@
     <Compile Include="properties\AssemblyInfo.cs" />
     <Compile Include="Player\Player.CPE.cs" />
     <Compile Include="Database\PlayerDB.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalBotControllersCmd.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordApiClient.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordBot.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordPlugin.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalDiscord\GlobalDiscordWebsocket.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCBot.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCNickList.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalIRC\GlobalIRCPlugin.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalRelayBot.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalRelayBotCmd.cs" />
+    <Compile Include="Modules\GlobalRelay\GlobalRelayBotSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
