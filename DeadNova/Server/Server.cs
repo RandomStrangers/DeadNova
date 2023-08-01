@@ -112,6 +112,7 @@ namespace DeadNova {
 
             Background.QueueOnce(LoadMainLevel);
             Background.QueueOnce(LoadAllPlugins);
+            Background.QueueOnce(LoadAllSimplePlugins);
             Background.QueueOnce(LoadAutoloadMaps);
             Background.QueueOnce(UpgradeTasks.UpgradeOldTempranks);
             Background.QueueOnce(UpgradeTasks.UpgradeDBTimeSpent);
@@ -188,14 +189,22 @@ namespace DeadNova {
                 if (File.Exists("blocks.json")) File.Move("blocks.json", "blockdefs/global.json");
             }
             catch { }
-        }        
-        
+        }
+
         public static void LoadAllSettings() {
             // Unload custom plugins
             List<Plugin> plugins = new List<Plugin>(Plugin.all);
-            foreach (Plugin p in plugins) {
+            foreach (Plugin p in plugins)
+            {
                 if (Plugin.core.Contains(p)) continue;
                 Plugin.Unload(p, false);
+            }
+            // Unload custom simple plugins
+            List<Plugin_Simple> plugins2 = new List<Plugin_Simple>(Plugin_Simple.all);
+            foreach (Plugin_Simple p2 in plugins2)
+            {
+                if (Plugin_Simple.core.Contains(p2)) continue;
+                Plugin_Simple.Unload(p2, false);
             }
             
             ZSGame.Instance.infectMessages = ZSConfig.LoadInfectMessages();
@@ -231,7 +240,13 @@ namespace DeadNova {
                 if (Plugin.core.Contains(p)) continue;
                 Plugin.Load(p, false);
             }
-            
+            // Reload custom simple plugins
+            foreach (Plugin_Simple p2 in plugins2)
+            {
+                if (Plugin_Simple.core.Contains(p2)) continue;
+                Plugin_Simple.Load(p2, false);
+            }
+
             OnConfigUpdatedEvent.Call();
         }
         
@@ -260,8 +275,10 @@ namespace DeadNova {
 
         static void UpdateThread(bool restarting, string msg)
         {
+
             try
             {
+
                 Logger.Log(LogType.SystemActivity, "Server Updating ({0})", msg);
             }
             catch { }
@@ -269,6 +286,13 @@ namespace DeadNova {
             // Stop accepting new connections and disconnect existing sessions
             try
             {
+#if DEV_BUILD_NOVA
+            Command.Find("say").Use(Player.Nova, "Goodbye Cruel World!");
+            Logger.Log(LogType.SystemActivity, "&fGoodbye Cruel World!");
+#else
+                Command.Find("say").Use(Player.Console, "Goodbye Cruel World!");
+                Logger.Log(LogType.SystemActivity, "&fGoodbye Cruel World!");
+#endif
                 if (Listener != null) Listener.Close();
             }
             catch (Exception ex) { Logger.LogError(ex); }
@@ -290,6 +314,7 @@ namespace DeadNova {
 
             OnShuttingDownEvent.Call(restarting, msg);
             Plugin.UnloadAll();
+            Plugin_Simple.UnloadAll();
 
             try
             {
@@ -364,8 +389,11 @@ namespace DeadNova {
 #endif
             OnShuttingDownEvent.Call(restarting, msg);
             Plugin.UnloadAll();
+            Plugin_Simple.UnloadAll();
 
-            try {
+
+            try
+            {
                 string autoload = null;
                 Level[] loaded = LevelInfo.Loaded.Items;
                 foreach (Level lvl in loaded) {

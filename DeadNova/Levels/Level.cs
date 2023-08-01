@@ -38,7 +38,8 @@ namespace DeadNova
     {
         Banned = -20, Guest = 0, Builder = 30,
         AdvBuilder = 50, Operator = 80,
-        Admin = 100, Nobody = 120,
+        Admin = 100, Nobody = 120, Owner = 120, // So newer MCGalaxy commands/plugins can
+                                                //still work.
 #if DEV_BUILD_NOVA
         Nova = 150
 #else

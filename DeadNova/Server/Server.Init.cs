@@ -57,7 +57,9 @@ namespace DeadNova {
         }
 
         static void LoadAllPlugins(SchedulerTask task) { Plugin.LoadAll(); }
-        
+        static void LoadAllSimplePlugins(SchedulerTask task) { Plugin_Simple.LoadAll(); }
+
+
         static void InitPlayerLists(SchedulerTask task) {
             try {
                 UpgradeTasks.UpgradeOldAgreed();

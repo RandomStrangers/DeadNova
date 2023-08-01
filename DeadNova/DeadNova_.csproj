@@ -672,6 +672,7 @@
     <Compile Include="Network\ClassicProtocol.cs" />
     <Compile Include="Network\CPESupport.cs" />
     <Compile Include="Network\Heartbeat\ClassiCube.cs" />
+    <Compile Include="Network\Heartbeat\CmdCCBeat.cs" />
     <Compile Include="Network\Heartbeat\Heartbeat.cs" />
     <Compile Include="Modules\Relay\IRC\IRCBot.cs" />
     <Compile Include="Network\Listeners.cs" />
@@ -702,6 +703,15 @@
     <Compile Include="Database\Undo\UndoFormat.cs" />
     <Compile Include="Network\Player.Networking.cs" />
     <Compile Include="Scripting\Plugin.cs" />
+    <Compile Include="Scripting\Plugin_simple\Backends_Simple.cs" />
+    <Compile Include="Scripting\Plugin_simple\Plugin_Simple.cs" />
+    <Compile Include="Scripting\Plugin_simple\SamplePlugin_Simple.cs" />
+    <Compile Include="Scripting\Plugin_simple\ScriptingOperations_Simple.cs" />
+    <Compile Include="Scripting\Plugin_simple\Scripting\CmdCompload.cs" />
+    <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePluginCompile.cs" />
+    <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePluginLoad.cs" />
+    <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePlugin.cs" />
+    <Compile Include="Scripting\Plugin_simple\Scripting_Simple.cs" />
     <Compile Include="Scripting\Scripting.cs" />
     <Compile Include="Player\Ban.cs" />
     <Compile Include="Database\SqlTransaction.cs" />

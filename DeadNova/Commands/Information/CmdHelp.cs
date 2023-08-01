@@ -39,7 +39,8 @@ namespace DeadNova.Commands.Info {
                 PrintEmotes(p, message);
             } else {
                 if (CmdCommands.ListCommands(p, message)) return;
-                if (ParseCommand(p, message) || ParseBlock(p, message) || ParsePlugin(p, message)) return;
+                if (ParseCommand(p, message) || ParseBlock(p, message) || ParsePlugin(p, message)
+                    || ParseSimplePlugin(p, message)) return;
                 p.Message("Could not find command, plugin or block specified.");
             }
         }
@@ -211,6 +212,17 @@ namespace DeadNova.Commands.Info {
         bool ParsePlugin(Player p, string message) {
             foreach (Plugin plugin in Plugin.all) {
                 if (plugin.name.CaselessEq(message)) {
+                    plugin.Help(p); return true;
+                }
+            }
+            return false;
+        }
+        bool ParseSimplePlugin(Player p, string message)
+        {
+            foreach (Plugin_Simple plugin in Plugin_Simple.all)
+            {
+                if (plugin.name.CaselessEq(message))
+                {
                     plugin.Help(p); return true;
                 }
             }

@@ -27,8 +27,8 @@ using DeadNova.Modules.Relay2.IRC2;
 namespace DeadNova {
     public sealed class ServerConfig : EnvConfig {
 
-        [ConfigString("server-name", "Server", "[DeadNova] Default", false, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")]
-        public string Name = "[DeadNova] Default";
+        [ConfigString("server-name", "Server", "&0[Dead&5Nova] &fDefault", false, " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")]
+        public string Name = "&0[Dead&5Nova] &fDefault";
         [ConfigString("motd", "Server", "Welcome", false)]
         public string MOTD = "Welcome!";
         [ConfigInt("max-players", "Server", 12, 1, Server.MAX_PLAYERS)]
@@ -53,8 +53,8 @@ namespace DeadNova {
         /// <summary> true if maps sees server-wide chat, false if maps have level-only/isolated chat </summary>
         [ConfigBool("world-chat", "Level", true)]
         public bool ServerWideChat = true;
-        [ConfigString("main-name", "Level", "main", false, "()._+,-")]
-        public string MainLevel = "main";
+        [ConfigString("main-name", "Level", "deadnova", false, "()._+,-")]
+        public string MainLevel = "deadnova";
         [ConfigString("default-texture-url", "Level", "", true)]
         public string DefaultTerrain = "";
         [ConfigString("default-texture-pack-url", "Level", "", true)]
