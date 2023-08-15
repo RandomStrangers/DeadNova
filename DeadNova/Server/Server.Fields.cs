@@ -44,7 +44,7 @@ namespace DeadNova {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
 
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "5.8.4.6";
+        public const string InternalVersion = "5.8.4.7";
         public static string Version { get { return InternalVersion; } }
 #if DEV_BUILD_NOVA
         public static string SoftwareName = "DeadNova Core";

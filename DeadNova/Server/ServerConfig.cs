@@ -69,6 +69,8 @@ namespace DeadNova {
 
         [ConfigBool("core-secret-commands", "Other", true)]
         public bool CoreSecretCommands = true;
+        [ConfigBool("MCLawl-secret-commands", "Other", true)]
+        public bool MCLawlSecretCommands = true;
         [ConfigBool("restart-on-error", "Error handling", true)]
         public bool restartOnError = true;
         [ConfigBool("software-staff-prefixes", "Other", true)]

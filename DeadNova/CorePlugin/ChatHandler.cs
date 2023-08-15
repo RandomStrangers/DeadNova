@@ -45,20 +45,20 @@ namespace DeadNova.Core {
             if (cmd == "pony") {
                 p.cancelcommand = true;
                 if (!MessageCmd.CanSpeak(p, cmd)) return;
-                int used = p.Extras.GetInt("SN_PONY");
+                int used = p.Extras.GetInt("DN_PONY");
                             
-                if (used < 2147483647) {
+                if (used < 2) {
                     Chat.MessageFrom(p, "λNICK &Sjust so happens to be a proud brony! Everyone give λNICK &Sa brohoof!");
                     Logger.Log(LogType.CommandUsage, "{0} used /{1}", p.name, cmd);
                 } else {
-                    p.Message("You have used this command 2147483647 times. You cannot use it anymore! Sorry, Brony!");
+                    p.Message("You have used this command 2 times. You cannot use it anymore! Sorry, Brony!");
                 }
                 
-                p.Extras["SN_PONY"] = used + 1;
+                p.Extras["DN_PONY"] = used + 1;
             } else if (cmd == "rainbowdashlikescoolthings") {
                 p.cancelcommand = true;
                 if (!MessageCmd.CanSpeak(p, cmd)) return;
-                int used = p.Extras.GetInt("SN_RD");
+                int used = p.Extras.GetInt("DN_RD");
                 
                 if (used < 2147483647) {
                     Chat.MessageGlobal("&4T&6H&eI&aS&3 S&9E&1R&4V&6E&eR &aJ&3U&9S&1T &4G&6O&eT &a2&30 &9P&1E&4R&6C&eE&aN&3T &9C&1O&4O&6L&eE&aR&3!");
@@ -67,7 +67,42 @@ namespace DeadNova.Core {
                     p.Message("You have used this command 2147483647 times. You cannot use it anymore! Sorry, Brony!");
                 }
                 
-                p.Extras["SN_RD"] = used + 1;
+                p.Extras["DN_RD"] = used + 1;
+            }
+            if (!Server.Config.MCLawlSecretCommands) return;
+            if (cmd.ToLower() == "care")
+            {
+                p.cancelcommand = true;
+                int used = p.Extras.GetInt("DN_CARE");
+
+                if (used < 2)
+                {
+                    p.Message("Corneria now loves you with all his heart.");
+                    Logger.Log(LogType.CommandUsage, "{0} used /{1}", p.name, cmd);
+                }
+                else
+                {
+                    p.Message("You have used this command 2 times. You cannot use it anymore!");
+                }
+
+                p.Extras["DN_CARE"] = used + 1;
+            }
+            else if (cmd.ToLower() == "facepalm")
+            {
+                p.cancelcommand = true;
+                int used = p.Extras.GetInt("DN_FACEPALM");
+
+                if (used < 2)
+                {
+                    p.Message("Lawlcat's bot army just simultaneously facepalm'd at your use of this command.");
+                    Logger.Log(LogType.CommandUsage, "{0} used /{1}", p.name, cmd);
+                }
+                else
+                {
+                    p.Message("You have used this command 2 times. You cannot use it anymore!");
+                }
+
+                p.Extras["DN_FACEPALM"] = used + 1;
             }
         }
     }

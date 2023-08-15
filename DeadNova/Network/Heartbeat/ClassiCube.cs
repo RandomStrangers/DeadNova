@@ -79,14 +79,13 @@ namespace DeadNova.Network
         protected override string GetHeartbeatData()
         {
             string name = Server.Config.Name;
-           string name2 = Server.Config.Name.Replace("&", "%26");
             OnSendingHeartbeatEvent.Call(this, ref name);
-           // name = Colors.StripUsed(name);
+            name = Colors.StripUsed(name);
 
             return
                 "&port=" + Server.Config.Port +
                 "&max=" + Server.Config.MaxPlayers +
-                "&name=" + Uri.EscapeDataString(name2) +
+                "&name=" + name +
                 "&public=" + Server.Config.Public +
                 "&version=7" +
                 "&salt=" + Salt +
