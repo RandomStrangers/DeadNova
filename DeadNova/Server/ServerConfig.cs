@@ -332,8 +332,8 @@ namespace DeadNova {
         [ConfigString("profanity-replacement", "Chat", "*")]
         public string ProfanityReplacement = "*";
 #if DEV_BUILD_NOVA
-        [ConfigString("Core-State", "Chat", "&5N&do&5v&da")]
-        public string CoreState = "&5N&do&5v&da";
+        [ConfigString("Core-State", "Chat", "&0Dead&5Nova")]
+        public string CoreState = "&0Dead&5Nova";
 #else
         [ConfigString("host-state", "Chat", "Alive")]
         public string ConsoleName = "Alive";

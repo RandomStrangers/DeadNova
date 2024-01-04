@@ -32,7 +32,7 @@ namespace DeadNova.Scripting
     {
 
         /// <summary> Returns the default .dll path for the plugin with the given name </summary>
-        public static string SimplePluginPath(string name) { return "plugins_simple/" + name + ".dll"; }
+        public static string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + ".dll"; }
 
         /// <summary> Constructs instances of all types which derive from T in the given assembly. </summary>
         /// <returns> The list of constructed instances. </returns>
@@ -93,7 +93,7 @@ namespace DeadNova.Scripting
 
         public static void AutoloadSimplePlugins()
         {
-            string[] files = AtomicIO.TryGetFiles("plugins_simple", "*.dll");
+            string[] files = AtomicIO.TryGetFiles(Directory.GetCurrentDirectory(), "*.dll");
 
             if (files != null)
             {
@@ -101,7 +101,7 @@ namespace DeadNova.Scripting
             }
             else
             {
-                Directory.CreateDirectory("plugins_simple");
+                Directory.CreateDirectory(Directory.GetCurrentDirectory());
             }
         }
 
@@ -144,7 +144,7 @@ namespace DeadNova.Scripting
         /// <summary> Returns source code for an example Plugin </summary>
         public abstract string SimplePluginSkeleton { get; }
 
-        public string SimplePluginPath(string name) { return "plugins_simple/" + name + FileExtension; }
+        public string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + FileExtension; }
 
         /// <summary> C# compiler instance. </summary>
         public static ICompiler_Simple CS = new CSCompiler_Simple();
@@ -297,7 +297,8 @@ namespace DeadNova.Scripting
                 AddReferences(path, args);
                 srcPaths[i] = path;
             }
-            args.ReferencedAssemblies.Add("DeadNova_.dll");
+            args.ReferencedAssemblies.Add(Server.GetServerDLLPath());
+
 
             PrepareArgs(args);
             InitCompiler();

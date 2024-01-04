@@ -410,7 +410,7 @@ public static List<Command> LoadCommands(string path, out string error)
                 AddReferences(path, args);
                 srcPaths[i] = path;
             }
-            args.ReferencedAssemblies.Add("DeadNova_.dll");
+            args.ReferencedAssemblies.Add(Server.GetServerDLLPath());
 
             PrepareArgs(args);
             InitCompiler();

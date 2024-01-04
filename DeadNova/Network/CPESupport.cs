@@ -148,9 +148,7 @@ namespace DeadNova
             new CpeExtension(CpeExt.CustomParticles,     "Allows defining and spawning custom particles"),
             new CpeExtension(CpeExt.CustomModels,        "Allows defining custom models for entities", 2),
             new CpeExtension(CpeExt.PluginMessages,      "Allows sending and receiving plugin messages from clients"),
-            #if TEN_BIT_BLOCKS
             new CpeExtension(CpeExt.ExtBlocks,           "Allows using block IDs over 255 in block definitions"),
-            #endif
         };
         public static CpeExt[] Empty = new CpeExt[0];
         

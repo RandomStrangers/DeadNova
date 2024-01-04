@@ -1,0 +1,45 @@
+name: Build latest
+on: [push]
+
+concurrency:
+  group: ${{ github.ref }}-latest
+  cancel-in-progress: true
+
+jobs:
+  build-mono:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Compile DeadNova using mono
+        shell: bash
+        id: compile
+        run: |
+          msbuild DeadNova.sln /p:Configuration=Release
+          cp -R bin/Release bin/Release_normal
+          rm bin/Release/DeadNova_.dll bin/Release/DeadNova_.pdb
+          msbuild DeadNova/DeadNova_.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_NOVA"
+          msbuild GUI/DeadNovaGUI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_NOVA"
+          msbuild CLI/DeadNovaCLI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_NOVA"
+
+      - uses: ./.github/actions/notify_failure
+        if: ${{ always() && steps.compile.outcome == 'failure' }}
+        with:
+          NOTIFY_MESSAGE: 'Failed to compile DeadNova .NET build! <@999409543001931788>'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
+          
+      - uses: ./.github/actions/notify_success
+        if: ${{ always() && steps.compile.outcome == 'success' }}
+        with:
+          SOURCE_FILE: 'bin/Release_normal'
+          DEST_NAME: 'DeadNova'
+          NOTIFY_MESSAGE: 'Successfully compiled DeadNova .NET build.'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
+          
+      - uses: ./.github/actions/notify_success
+        if: ${{ always() && steps.compile.outcome == 'success' }}
+        with:
+          SOURCE_FILE: 'bin/Release'
+          DEST_NAME: 'DeadNova-Core'
+          NOTIFY_MESSAGE: 'Successfully compiled DeadNova .NET Core build.'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'

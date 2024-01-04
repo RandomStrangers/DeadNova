@@ -1,7 +1,7 @@
 ﻿SuperNova (RandomStrangers)
  v 9.5.3.4
  Fixed: ranking system.
- Fixed: Updater npt updating.
+ Fixed: Updater not updating.
  Improved: Discord and IRC should now be able to connect to 3 bots/servers, this does not show correctly in GUI, so edit the files instead.
  
 v 9.5.3.1

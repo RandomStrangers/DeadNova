@@ -17,6 +17,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using DeadNova.Network;
 using DeadNova.Tasks;
 
@@ -44,7 +45,7 @@ namespace DeadNova {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
 
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "5.8.4.7";
+        public const string InternalVersion = "5.8.4.8";
         public static string Version { get { return InternalVersion; } }
 #if DEV_BUILD_NOVA
         public static string SoftwareName = "DeadNova Core";
@@ -53,6 +54,7 @@ namespace DeadNova {
         public static string SoftwareName = "DeadNova";
 #endif
         static string fullName;
+
         public static string SoftwareNameVersioned {
             // By default, if SoftwareName gets externally changed, that is reflected in SoftwareNameVersioned too
             get { return fullName ?? SoftwareName + " " + Version; }
@@ -72,8 +74,12 @@ namespace DeadNova {
         public static PlayerList ignored, hidden, agreed, vip, noEmotes, lockdown;
         public static PlayerExtList models, skins, reach, rotations, modelScales;
         public static PlayerExtList frozen, muted, tempBans, tempRanks;
-        
-        public static readonly List<string> Devs = new List<string>() { "Hetal", "UclCommander", "DeadNova" };
+
+        public static readonly List<string> Devs = new List<string>() {
+            "DarkBurningFlame", "BurningFlame", "SuperNova", "DeadNova",
+            "HyperNova", "RandomStranger05", "GoldenSparks", "AurumStellae",
+            "sethbatman05", "sethbatman2005", "jackstage1", "Pattykaki45",
+            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae"}; 
         public static readonly List<string> Opstats = new List<string>() { "ban", "tempban", "xban", "banip", "kick", "warn", "mute", "freeze", "setrank" };
 
         public static Level mainLevel;
@@ -89,13 +95,16 @@ namespace DeadNova {
         
         public static int YesVotes, NoVotes;
         public static bool voting;
-        public const int MAX_PLAYERS = 256;
+        public const int MAX_PLAYERS = int.MaxValue;
         
         public static Scheduler MainScheduler = new Scheduler("DN_MainScheduler");
         public static Scheduler Background = new Scheduler("DN_BackgroundScheduler");
         public static Scheduler Critical = new Scheduler("DN_CriticalScheduler");
         public static Server s = new Server();
-
+        public static string GetServerDLLPath()
+        {
+            return Assembly.GetExecutingAssembly().Location;
+        }
         public const byte VERSION_0016 = 3; // classic 0.0.16
         public const byte VERSION_0017 = 4; // classic 0.0.17 / 0.0.18
         public const byte VERSION_0019 = 5; // classic 0.0.19
