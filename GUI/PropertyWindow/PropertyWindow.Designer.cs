@@ -3064,7 +3064,7 @@ namespace DeadNova.Gui
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                                     | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.pageServer);
             this.tabControl.Controls.Add(this.pageChat);
@@ -4127,7 +4127,7 @@ namespace DeadNova.Gui
             this.zs_numInvHumanDur.Location = new System.Drawing.Point(227, 20);
             this.zs_numInvHumanDur.Name = "zs_numInvHumanDur";
             this.zs_numInvHumanDur.Size = new System.Drawing.Size(52, 21);
-            this.zs_numInvHumanDur.TabIndex = 32;            
+            this.zs_numInvHumanDur.TabIndex = 32;
             this.toolTip.SetToolTip(this.zs_numInvHumanDur, "How many seconds a human is invisible for after using /buy invisibility");
             // 
             // zs_numInvZombieMax
@@ -6005,8 +6005,8 @@ namespace DeadNova.Gui
         private System.Windows.Forms.ComboBox blk_cmbAlw2;
         private System.Windows.Forms.ComboBox blk_cmbAlw3;
         private System.Windows.Forms.GroupBox blk_grpPermissions;
-#endregion
-        
+        #endregion
+
         private System.Windows.Forms.TextBox dis_txtOpChannel;
         private System.Windows.Forms.Label dis_lblOpChannel;
         private System.Windows.Forms.TextBox dis_txtChannel;
@@ -6024,13 +6024,13 @@ namespace DeadNova.Gui
         private System.Windows.Forms.Label srv_lblOwner;
         private System.Windows.Forms.GroupBox rank_grpMisc;
         private System.Windows.Forms.GroupBox rank_grpGeneral;
-        
+
         private System.Windows.Forms.TabPage pageChat;
         private System.Windows.Forms.GroupBox chat_grpTab;
         private System.Windows.Forms.CheckBox chat_cbTabRank;
         private System.Windows.Forms.CheckBox chat_cbTabLevel;
         private System.Windows.Forms.CheckBox chat_cbTabBots;
-        
+
         private System.Windows.Forms.GroupBox chat_grpMessages;
         private System.Windows.Forms.Label chat_lblShutdown;
         private System.Windows.Forms.TextBox chat_txtShutdown;
@@ -6042,7 +6042,7 @@ namespace DeadNova.Gui
         private System.Windows.Forms.TextBox chat_txtPromote;
         private System.Windows.Forms.Label chat_lblDemote;
         private System.Windows.Forms.TextBox chat_txtDemote;
-        
+
         private System.Windows.Forms.GroupBox chat_grpColors;
         private System.Windows.Forms.Label chat_lblDefault;
         private System.Windows.Forms.Button chat_btnDefault;
@@ -6052,12 +6052,12 @@ namespace DeadNova.Gui
         private System.Windows.Forms.Button chat_btnSyntax;
         private System.Windows.Forms.Label chat_lblDesc;
         private System.Windows.Forms.Button chat_btnDesc;
-        
+
         private System.Windows.Forms.GroupBox chat_grpOther;
         private System.Windows.Forms.Label chat_lblConsole;
         private System.Windows.Forms.TextBox chat_txtConsole;
-        
-        
+
+
         private System.Windows.Forms.TabPage pageSecurity;
         private System.Windows.Forms.GroupBox sec_grpChat;
         private System.Windows.Forms.CheckBox sec_cbChatAuto;
@@ -6067,7 +6067,7 @@ namespace DeadNova.Gui
         private System.Windows.Forms.NumericUpDown sec_numChatMsgs;
         private System.Windows.Forms.Label sec_lblChatOnMute;
         private DeadNova.Gui.TimespanUpDown sec_numChatSecs;
-        
+
         private System.Windows.Forms.GroupBox sec_grpCmd;
         private System.Windows.Forms.CheckBox sec_cbCmdAuto;
         private DeadNova.Gui.TimespanUpDown sec_numCmdMute;
@@ -6076,7 +6076,7 @@ namespace DeadNova.Gui
         private System.Windows.Forms.Label sec_lblCmdOnMsgs;
         private System.Windows.Forms.NumericUpDown sec_numCmdMsgs;
         private System.Windows.Forms.Label sec_lblCmdOnMute;
-        
+
         private System.Windows.Forms.GroupBox sec_grpIP;
         private System.Windows.Forms.CheckBox sec_cbIPAuto;
         private DeadNova.Gui.TimespanUpDown sec_numIPMute;
@@ -6085,21 +6085,21 @@ namespace DeadNova.Gui
         private System.Windows.Forms.Label sec_lblIPOnMsgs;
         private System.Windows.Forms.NumericUpDown sec_numIPMsgs;
         private System.Windows.Forms.Label sec_lblIPOnMute;
-        
+
         private System.Windows.Forms.GroupBox sec_grpOther;
         private System.Windows.Forms.CheckBox sec_cbLogNotes;
         private System.Windows.Forms.CheckBox sec_cbWhitelist;
         private System.Windows.Forms.CheckBox sec_cbVerifyAdmins;
         private System.Windows.Forms.Label sec_lblRank;
         private System.Windows.Forms.ComboBox sec_cmbVerifyRank;
-        
+
         private System.Windows.Forms.GroupBox sec_grpBlocks;
         private System.Windows.Forms.CheckBox sec_cbBlocksAuto;
         private DeadNova.Gui.TimespanUpDown sec_numBlocksSecs;
         private System.Windows.Forms.Label sec_lblBlocksOnMsgs;
         private System.Windows.Forms.NumericUpDown sec_numBlocksMsgs;
         private System.Windows.Forms.Label sec_lblBlocksOnMute;
-        
+
         private System.Windows.Forms.Button main_btnSave;
         private System.Windows.Forms.Button main_btnDiscard;
         private System.Windows.Forms.Button main_btnApply;

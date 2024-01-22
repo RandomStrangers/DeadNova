@@ -105,6 +105,7 @@ namespace DeadNova
 \t{{
 \t\tpublic override string name {{ get {{ return ""{0}""; }} }}
 \t\tpublic override string DeadNova_Version {{ get {{ return ""{2}""; }} }}
+\t\t\t//Not actually needed, only shows a custom message in logs when loaded.
 \t\tpublic override string welcome {{ get {{ return ""Loaded Message!""; }} }}
 \t\tpublic override string creator {{ get {{ return ""{1}""; }} }}
 
@@ -234,6 +235,7 @@ Namespace DeadNova
 \t\t\t\tReturn ""{2}""
 \t\t\tEnd Get
 \t\t End Property
+\t\t\t' Not actually needed, only shows a custom message in logs when loaded.
 \t\tPublic Overrides ReadOnly Property welcome() As String
 \t\t\tGet
 \t\t\t\tReturn ""Loaded Message!""

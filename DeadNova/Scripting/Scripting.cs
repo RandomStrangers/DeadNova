@@ -30,7 +30,7 @@ namespace DeadNova.Scripting
     /// <summary> Utility methods for loading assemblies, commands, and plugins </summary>
     public static class IScripting
     {
-        public const string AutoloadFile = "text/cmdautoload.txt";
+        //public const string AutoloadFile = "text/cmdautoload.txt";
         public const string DllDir = "extra/commands/dll/";
 
         /// <summary> Returns the default .dll path for the custom command with the given name </summary>

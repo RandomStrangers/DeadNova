@@ -28,7 +28,7 @@ namespace DeadNova.Cli {
         public static void Main(string[] args) {
             SetCurrentDirectory();
 
-            // If SuperNova_.dll is missing, a FileNotFoundException will get thrown for DeadNova dll
+            // If DeadNova_.dll is missing, a FileNotFoundException will get thrown for DeadNova dll
             try {
                 EnableCLIMode();
             } catch (FileNotFoundException) {

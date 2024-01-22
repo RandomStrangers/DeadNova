@@ -17,7 +17,7 @@ Imports System
 
 Namespace DeadNova
 \tPublic Class {0}
-\t\tInherits Plugin
+\t\tInherits Plugin_Simple
 
 \t\tPublic Overrides ReadOnly Property name() As String
 \t\t\tGet

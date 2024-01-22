@@ -82,7 +82,7 @@ namespace DeadNova.Gui {
         void chat_btnIRC_Click(object sender, EventArgs e) {
             chat_ShowColorDialog(chat_btnIRC, "IRC text color");
         }
-        
+
         void chat_btnSyntax_Click(object sender, EventArgs e) {
             chat_ShowColorDialog(chat_btnSyntax, "Help syntax color");
         }

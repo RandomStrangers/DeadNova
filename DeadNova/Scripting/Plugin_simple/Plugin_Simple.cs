@@ -25,14 +25,14 @@ namespace DeadNova
     public abstract class Plugin_Simple
     {
         /// <summary> Hooks into events and initalises states/resources etc </summary>
-        /// <param name="auto"> True if plugin is being automatically loaded (e.g. on server startup), false if manually. </param>
+        /// <param name="auto"> True if simple plugin is being automatically loaded (e.g. on server startup), false if manually. </param>
         public abstract void Load(bool auto);
 
         /// <summary> Unhooks from events and disposes of state/resources etc </summary>
-        /// <param name="auto"> True if plugin is being auto unloaded (e.g. on server shutdown), false if manually. </param>
+        /// <param name="auto"> True if simple plugin is being auto unloaded (e.g. on server shutdown), false if manually. </param>
         public abstract void Unload(bool auto);
 
-        /// <summary> Called when a player does /Help on the plugin. Typically tells the player what this plugin is about. </summary>
+        /// <summary> Called when a player does /Help on the simple plugin. Typically tells the player what this simple plugin is about. </summary>
         /// <param name="p"> Player who is doing /Help. </param>
         public virtual void Help(Player p)
         {
@@ -41,69 +41,69 @@ namespace DeadNova
 
         /// <summary> Name of the plugin. </summary>
         public abstract string name { get; }
-        /// <summary> Oldest version of DeadNova this plugin is compatible with. </summary>
+        /// <summary> Oldest version of DeadNova this simple plugin is compatible with. </summary>
         public abstract string DeadNova_Version { get; }
-        /// <summary> Version of this plugin. </summary>
+        /// <summary> Version of this simple plugin. </summary>
         public virtual int build { get { return 0; } }
-        /// <summary> Message to display once this plugin is loaded. </summary>
+        /// <summary> Message to display once this simple plugin is loaded. </summary>
         public virtual string welcome { get { return ""; } }
-        /// <summary> The creator/author of this plugin. (Your name) </summary>
+        /// <summary> The creator/author of this simple plugin. (Your name) </summary>
         public virtual string creator { get { return ""; } }
-        /// <summary> Whether or not to auto load this plugin on server startup. </summary>
+        /// <summary> Whether or not to auto load this simple plugin on server startup. </summary>
         public virtual bool LoadAtStartup { get { return true; } }
 
 
         public static List<Plugin_Simple> core = new List<Plugin_Simple>();
         public static List<Plugin_Simple> all = new List<Plugin_Simple>();
 
-        public static bool Load(Plugin_Simple p, bool auto)
+        public static bool Load(Plugin_Simple ps, bool auto)
         {
             try
             {
-                string ver = p.DeadNova_Version;
+                string ver = ps.DeadNova_Version;
                 if (!string.IsNullOrEmpty(ver) && new Version(ver) > new Version(Server.Version))
                 {
-                    Logger.Log(LogType.Warning, "Simple plugin ({0}) requires a more recent version of {1}!", p.name, Server.SoftwareName);
+                    Logger.Log(LogType.Warning, "Simple plugin ({0}) requires a more recent version of {1}!", ps.name, Server.SoftwareName);
                     return false;
                 }
-                all.Add(p);
+                all.Add(ps);
 
-                if (p.LoadAtStartup || !auto)
+                if (ps.LoadAtStartup || !auto)
                 {
-                    p.Load(auto);
-                    Logger.Log(LogType.SystemActivity, "Simple plugin {0} loaded...build: {1}", p.name, p.build);
+                    ps.Load(auto);
+                    Logger.Log(LogType.SystemActivity, "Simple plugin {0} loaded...build: {1}", ps.name, ps.build);
                 }
                 else
                 {
-                    Logger.Log(LogType.SystemActivity, "Simple plugin {0} was not loaded, you can load it with /pload", p.name);
+                    Logger.Log(LogType.SystemActivity, "Simple plugin {0} was not loaded, you can load it with /pload", ps.name);
                 }
 
-                if (!string.IsNullOrEmpty(p.welcome)) Logger.Log(LogType.SystemActivity, p.welcome);
+                if (!string.IsNullOrEmpty(ps.welcome)) Logger.Log(LogType.SystemActivity, ps.welcome);
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.LogError("Error loading simple plugin " + p.name, ex);
-                if (!string.IsNullOrEmpty(p.creator)) Logger.Log(LogType.Warning, "You can go bug {0} about it.", p.creator);
+                Logger.LogError("Error loading simple plugin " + ps.name, ex);
+                if (!string.IsNullOrEmpty(ps.creator)) Logger.Log(LogType.Warning, "You can go bug {0} about it.", ps.creator);
                 return false;
             }
         }
 
-        public static bool Unload(Plugin_Simple p, bool auto)
+        public static bool Unload(Plugin_Simple ps, bool auto)
         {
             bool success = true;
             try
             {
-                p.Unload(auto);
-                Logger.Log(LogType.SystemActivity, "Simple plugin {0} was unloaded.", p.name);
+                ps.Unload(auto);
+                Logger.Log(LogType.SystemActivity, "Simple plugin {0} was unloaded.", ps.name);
             }
             catch (Exception ex)
             {
-                Logger.LogError("Error unloading simple plugin " + p.name, ex);
+                Logger.LogError("Error unloading simple plugin " + ps.name, ex);
                 success = false;
             }
 
-            all.Remove(p);
+            all.Remove(ps);
             return success;
         }
 
@@ -120,11 +120,11 @@ namespace DeadNova
             IScripting_Simple.AutoloadSimplePlugins();
         }
 
-        static void LoadCorePlugin(Plugin_Simple plugin)
+        static void LoadCorePlugin(Plugin_Simple simpleplugin)
         {
-            plugin.Load(true);
-            all.Add(plugin);
-            core.Add(plugin);
+            simpleplugin.Load(true);
+            all.Add(simpleplugin);
+            core.Add(simpleplugin);
         }
     }
 }

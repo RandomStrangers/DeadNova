@@ -105,17 +105,17 @@ namespace DeadNova.Commands.Scripting {
         
         static void UnloadSimplePlugin(Player p, string name) {
             int matches;
-            Plugin_Simple plugin = Matcher.Find(p, name, out matches, Plugin_Simple.all, 
+            Plugin_Simple simpleplugin = Matcher.Find(p, name, out matches, Plugin_Simple.all, 
                                          null, pln => pln.name, "plugins_simple");
-            if (plugin == null) return;
+            if (simpleplugin == null) return;
             
-            if (Plugin_Simple.core.Contains(plugin)) {
-                p.Message(plugin.name + " is a core simple plugin and cannot be unloaded.");
+            if (Plugin_Simple.core.Contains(simpleplugin)) {
+                p.Message(simpleplugin.name + " is a core simple plugin and cannot be unloaded.");
                 return;
             }
             
-            if (plugin != null) {
-                if (Plugin_Simple.Unload(plugin, false)) {
+            if (simpleplugin != null) {
+                if (Plugin_Simple.Unload(simpleplugin, false)) {
                     p.Message("Simple plugin unloaded successfully.");
                 } else {
                     p.Message("&WError unloading simple plugin. See error logs for more information.");
@@ -133,7 +133,7 @@ namespace DeadNova.Commands.Scripting {
             p.Message("Creating a simple plugin example source");
             
             string creator = p.IsSuper ? Server.Config.Name : p.truename;
-            string source  = engine.GenExamplePlugin(name, creator);
+            string source  = engine.GenExampleSimplePlugin(name, creator);
             File.WriteAllText(path, source);
         }
         

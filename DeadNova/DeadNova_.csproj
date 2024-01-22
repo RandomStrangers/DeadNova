@@ -685,8 +685,6 @@
     <Compile Include="Scripting\Plugin_simple\SamplePlugin_Simple.cs" />
     <Compile Include="Scripting\Plugin_simple\ScriptingOperations_Simple.cs" />
     <Compile Include="Scripting\Plugin_simple\Scripting\CmdCompload.cs" />
-    <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePluginCompile.cs" />
-    <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePluginLoad.cs" />
     <Compile Include="Scripting\Plugin_simple\Scripting\CmdSimplePlugin.cs" />
     <Compile Include="Scripting\Plugin_simple\Scripting_Simple.cs" />
     <Compile Include="Scripting\Scripting.cs" />
@@ -783,9 +781,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Changelog.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

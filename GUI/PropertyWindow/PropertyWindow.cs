@@ -20,25 +20,27 @@ using DeadNova.Eco;
 using DeadNova.Events.GameEvents;
 using DeadNova.Games;
 
-namespace DeadNova.Gui 
+namespace DeadNova.Gui
 {
-    public partial class PropertyWindow : Form 
+    public partial class PropertyWindow : Form
     {
         ZombieProperties zsSettings = new ZombieProperties();
-        
-        public PropertyWindow() {
+
+        public PropertyWindow()
+        {
             InitializeComponent();
             zsSettings.LoadFromServer();
             propsZG.SelectedObject = zsSettings;
         }
-        
+
         public void RunOnUI_Async(Action act) { BeginInvoke(act); }
 
-        void PropertyWindow_Load(object sender, EventArgs e) {
+        void PropertyWindow_Load(object sender, EventArgs e)
+        {
             // try to use same icon as main window
             // must be done in OnLoad, otherwise icon doesn't show on Mono
             GuiUtils.SetIcon(this);
-            
+
             OnMapsChangedEvent.Register(HandleMapsChanged, Priority.Low);
             OnStateChangedEvent.Register(HandleStateChanged, Priority.Low);
             GuiPerms.UpdateRankNames();
@@ -50,29 +52,34 @@ namespace DeadNova.Gui
             //Load server stuff
             LoadProperties();
             LoadRanks();
-            try {
+            try
+            {
                 LoadCommands();
                 LoadBlocks();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Logger.LogError("Error loading commands and blocks", ex);
             }
 
             LoadGameProps();
         }
 
-        void PropertyWindow_Unload(object sender, EventArgs e) {
+        void PropertyWindow_Unload(object sender, EventArgs e)
+        {
             OnMapsChangedEvent.Unregister(HandleMapsChanged);
             OnStateChangedEvent.Unregister(HandleStateChanged);
             Window.hasPropsForm = false;
         }
 
-        void LoadProperties() {
+        void LoadProperties()
+        {
             SrvProperties.Load();
             LoadGeneralProps();
             LoadChatProps();
             LoadRelayProps();
-            LoadRelayProps1();
-            LoadRelayProps2();
+            //LoadRelayProps1();
+            //LoadRelayProps2();
             LoadSqlProps();
             LoadEcoProps();
             LoadMiscProps();
@@ -81,41 +88,46 @@ namespace DeadNova.Gui
             zsSettings.LoadFromServer();
         }
 
-        void SaveProperties() {
-            try {
+        void SaveProperties()
+        {
+            try
+            {
                 ApplyGeneralProps();
                 ApplyChatProps();
                 ApplyRelayProps();
-                ApplyRelayProps1();
-                ApplyRelayProps2();
+                //ApplyRelayProps1();
+                //ApplyRelayProps2();
                 ApplySqlProps();
                 ApplyEcoProps();
                 ApplyMiscProps();
                 ApplyRankProps();
                 ApplySecurityProps();
-                
+
                 zsSettings.ApplyToServer();
                 SrvProperties.Save();
-                Economy.Save();                
-            } catch (Exception ex) {
+                Economy.Save();
+            }
+            catch (Exception ex)
+            {
                 Logger.LogError(ex);
                 Logger.Log(LogType.Warning, "SAVE FAILED! properties/server.properties");
             }
             SaveDiscordProps();
-            SaveDiscordProps1();
-            SaveDiscordProps2();
+            //SaveDiscordProps1();
+            //SaveDiscordProps2();
         }
 
         void btnSave_Click(object sender, EventArgs e) { SaveChanges(); Dispose(); }
         void btnApply_Click(object sender, EventArgs e) { SaveChanges(); }
 
-        void SaveChanges() {
+        void SaveChanges()
+        {
             SaveProperties();
             SaveRanks();
             SaveCommands();
             SaveBlocks();
             SaveGameProps();
-            
+
             try { ZSGame.Config.Save(); }
             catch { Logger.Log(LogType.Warning, "Error saving Zombie Survival settings!"); }
 
@@ -125,7 +137,8 @@ namespace DeadNova.Gui
 
         void btnDiscard_Click(object sender, EventArgs e) { Dispose(); }
 
-        void GetHelp(string toHelp) {
+        void GetHelp(string toHelp)
+        {
 #if DEV_BUILD_NOVA
             NovaHelpPlayer p = new NovaHelpPlayer();
 #else
@@ -154,7 +167,8 @@ namespace DeadNova.Gui
             SuperName = "Console";
         }
 #endif
-        public override void Message(byte type, string message) {
+        public override void Message(byte type, string message)
+        {
             message = Chat.Format(message, this);
             Messages += message + "\r\n";
         }

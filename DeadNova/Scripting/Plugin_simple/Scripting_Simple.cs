@@ -27,12 +27,16 @@ using System.Text;
 
 namespace DeadNova.Scripting
 {
-    /// <summary> Utility methods for loading assemblies, commands, and plugins </summary>
+    /// <summary> Utility methods for loading assemblies, and simple plugins </summary>
     public static class IScripting_Simple
     {
+        public static string SimplePluginDir = Directory.GetCurrentDirectory() + "/";
+        public static string SimplePluginDirNoSlash = Directory.GetCurrentDirectory();
 
-        /// <summary> Returns the default .dll path for the plugin with the given name </summary>
-        public static string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + ".dll"; }
+
+        /// <summary> Returns the default .dll path for the simple plugin with the given name </summary>
+        public static string SimplePluginPath(string name) { return SimplePluginDir + name + ".dll"; }
+
 
         /// <summary> Constructs instances of all types which derive from T in the given assembly. </summary>
         /// <returns> The list of constructed instances. </returns>
@@ -93,29 +97,38 @@ namespace DeadNova.Scripting
 
         public static void AutoloadSimplePlugins()
         {
-            string[] files = AtomicIO.TryGetFiles(Directory.GetCurrentDirectory(), "*.dll");
+            string simplepluginpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+            string[] files = AtomicIO.TryGetFiles(simplepluginpath, "*.dll");
             if (files != null)
             {
-                foreach (string path in files) { LoadSimplePlugin(path, true); }
+                foreach (string file in files)
+                {
+                    //TODO: Some system files might not contain these
+                    if (!file.CaselessContains("SQL") || file.CaselessContains("Newtonsoft")
+                        || file.CaselessContains("System"))
+                    {
+                        LoadSimplePlugin(file, true);
+                    }
+                }
             }
             else
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory());
+                Directory.CreateDirectory("");
             }
         }
 
-        /// <summary> Loads all plugins from the given .dll path. </summary>
+        /// <summary> Loads all simple plugins from the given .dll path. </summary>
         public static bool LoadSimplePlugin(string path, bool auto)
         {
             try
             {
                 Assembly lib = LoadAssembly(path);
-                List<Plugin_Simple> plugins = IScripting_Simple.LoadTypes<Plugin_Simple>(lib);
+                List<Plugin_Simple> simpleplugins = IScripting_Simple.LoadTypes<Plugin_Simple>(lib);
 
-                foreach (Plugin_Simple plugin in plugins)
+                foreach (Plugin_Simple simpleplugin in simpleplugins)
                 {
-                    if (!Plugin_Simple.Load(plugin, auto)) return false;
+                    if (!Plugin_Simple.Load(simpleplugin, auto)) return false;
                 }
                 return true;
             }
@@ -141,10 +154,11 @@ namespace DeadNova.Scripting
         /// <summary> The full name of this programming language </summary>
         /// <example> CSharp, Visual Basic </example>
         public abstract string FullName { get; }
-        /// <summary> Returns source code for an example Plugin </summary>
+        /// <summary> Returns source code for an example simple Plugin </summary>
         public abstract string SimplePluginSkeleton { get; }
-
-        public string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + FileExtension; }
+        public static string SimplePluginDirNoSlash = Directory.GetCurrentDirectory();
+        public static string SimplePluginDir = Directory.GetCurrentDirectory() + "/";
+        public string SimplePluginPath(string name) { return SimplePluginDir + name + FileExtension; }
 
         /// <summary> C# compiler instance. </summary>
         public static ICompiler_Simple CS = new CSCompiler_Simple();
@@ -161,11 +175,11 @@ namespace DeadNova.Scripting
             source = source.Replace("\n", "\r\n");
             return string.Format(source, args);
         }
-        /// <summary> Generates source code for an example plugin, 
+        /// <summary> Generates source code for an example simple plugin, 
         /// preformatted with the given name and creator </summary>
-        public string GenExamplePlugin(string plugin, string creator)
+        public string GenExampleSimplePlugin(string simpleplugin, string creator)
         {
-            return FormatSource(SimplePluginSkeleton, plugin, creator, Server.Version);
+            return FormatSource(SimplePluginSkeleton, simpleplugin, creator, Server.Version);
         }
 
 
