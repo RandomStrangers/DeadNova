@@ -45,7 +45,7 @@ namespace DeadNova {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
 
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "5.8.4.9";
+        public const string InternalVersion = "5.8.5.0";
         public static string Version { get { return InternalVersion; } }
 #if DEV_BUILD_NOVA
         public static string SoftwareName = "DeadNova Core";
@@ -74,12 +74,14 @@ namespace DeadNova {
         public static PlayerList ignored, hidden, agreed, vip, noEmotes, lockdown;
         public static PlayerExtList models, skins, reach, rotations, modelScales;
         public static PlayerExtList frozen, muted, tempBans, tempRanks;
-
         public static readonly List<string> Devs = new List<string>() {
             "DarkBurningFlame", "BurningFlame", "SuperNova", "DeadNova",
             "HyperNova", "RandomStranger05", "GoldenSparks", "AurumStellae",
             "sethbatman05", "sethbatman2005", "jackstage1", "Pattykaki45",
-            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae"}; 
+            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae",
+            "HarmonyNetwork" , "krowteNynomraH", "UserTaken123", "UserNotFree",
+            "Onedez"
+        };
         public static readonly List<string> Opstats = new List<string>() { "ban", "tempban", "xban", "banip", "kick", "warn", "mute", "freeze", "setrank" };
 
         public static Level mainLevel;
@@ -110,8 +112,6 @@ namespace DeadNova {
         public const byte VERSION_0019 = 5; // classic 0.0.19
         public const byte VERSION_0020 = 6; // classic 0.0.20 / 0.0.21 / 0.0.23
         public const byte VERSION_0030 = 7; // classic 0.30 (final)
-        public const byte VERSION_0000 = 8; // classic 0.0.00 (Doesn't really exist, here for fun, if a player connects using this
-                                            // then we have a real problem
 
         public static bool chatmod, flipHead;
         public static bool shuttingDown;
