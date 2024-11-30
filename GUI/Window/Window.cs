@@ -144,9 +144,13 @@ Trying to mix two versions is unsupported - you may experience issues";
         {
             if (e.Button == MouseButtons.Left) icon_OpenConsole_Click(sender, e);
         }
-
+        public static void WarnObsolete()
+        {
+            MessageBox.Show("Notice: DeadNova is obsolete, please use the Flames software instead. \n(See " + Updater.FlamesURL + ")", "Obsolete Software", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         void InitServer()
         {
+            RunOnUI_Async(WarnObsolete);
             Logger.LogHandler += LogMessage;
             Updater.NewerVersionDetected += OnNewerVersionDetected;
 

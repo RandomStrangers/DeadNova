@@ -74,7 +74,7 @@ namespace DeadNova.Cli {
             try {
                 Logger.LogHandler += LogMessage;
                 Updater.NewerVersionDetected += LogNewerVersionDetected;
-                
+                WarnObsolete();
                 EnableCLIMode();
                 Server.Start();
                 Console.Title = Colors.Strip(Server.Config.Name + " - " + Server.SoftwareNameVersioned);
@@ -173,7 +173,11 @@ namespace DeadNova.Cli {
         static void LogNewerVersionDetected(object sender, EventArgs e) {
             Write("&4DeadNova update available! Update by replacing with the files from " + Updater.UploadsURL);
         }
-        
+        public static void WarnObsolete()
+        {
+            Write("&eNotice: DeadNova is obsolete, please use the Flames software instead.");
+            Write("&e(See " + Updater.FlamesURL + ")");
+        }
         static void ConsoleLoop() {
             int eofs = 0;
             while (true) {

@@ -31,21 +31,18 @@ namespace DeadNova {
         public const string BaseURL    = "https://github.com/RandomStrangers/DeadNova/blob/master/";
         public const string UploadsURL = "https://github.com/RandomStrangers/DeadNova/tree/master/Uploads";
         public const string UpdatesURL = "https://github.com/RandomStrangers/DeadNova/raw/master/Uploads/";
-        public static string WikiURL = "https://github.com/UnknownShadow200/MCGalaxy";
+        public static string WikiURL = "https://github.com/ClassiCube/MCGalaxy/wiki/";
+        public const string FlamesURL = "https://github.com/RandomStrangers/Fire";
 
 
         const string CurrentVersionURL = BaseURL + "Uploads/current_version.txt";
 #if DEV_BUILD_NOVA
         const string dllURL = UpdatesURL + "DeadNova_Core.dll";
         const string guiURL = UpdatesURL + "DeadNova_CoreGUI.exe";
-        // const string changelogURL = BaseURL + "Changelog.txt";
-        // pointless since I don't really update the changelog...
         const string cliURL = UpdatesURL + "DeadNovaCLI_Core.exe";
 #else
         const string dllURL = UpdatesURL + "DeadNova_.dll";
         const string guiURL = UpdatesURL + "DeadNova.exe";
-        // const string changelogURL = BaseURL + "Changelog.txt";
-        // pointless since I don't really update the changelog...
         const string cliURL = UpdatesURL + "DeadNovaCLI.exe";
 #endif
 
@@ -92,8 +89,6 @@ namespace DeadNova {
                 client.DownloadFile(dllURL, "DeadNova_.update");
                 client.DownloadFile(guiURL, "DeadNova.update");
                 client.DownloadFile(cliURL, "DeadNovaCLI.update");
-                // client.DownloadFile(changelogURL, "Changelog.txt");
-                // pointless since I don't really update the changelog...
 
                 Level[] levels = LevelInfo.Loaded.Items;
                 foreach (Level lvl in levels) {
